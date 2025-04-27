@@ -41,8 +41,12 @@ export const addRoutes = async () => {
       transformedRoutes.forEach(route => {
         router.addRoute(route)
       })
+      router.addRoute({
+        path: "/:pathMath(.*)",
+        redirect: "/error/404",
+      })
     }
-    console.log(router.getRoutes().length)
+    console.log(router.getRoutes())
   } catch (error) {
     // 获取信息失败，清除token并跳转到登录页
     const userStore = useUserStore()

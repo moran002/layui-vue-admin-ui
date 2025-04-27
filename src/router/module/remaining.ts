@@ -4,7 +4,7 @@ import Login from '@/views/login/index.vue';
 export const remainingRouter = [
     {
         path: '/',
-        redirect: '/index'
+        redirect: '/index/index'
     },
     {
         path: '/login',

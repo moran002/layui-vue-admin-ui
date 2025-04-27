@@ -16,7 +16,7 @@ export function useMenu() {
   const openKeys = ref<string[]>([]);
   const isAccordion = computed(() => appStore.accordion);
   const isSubfield = computed(() => appStore.subfield);
-  const mainSelectedKey = ref("/index");
+  const mainSelectedKey = ref("/index/index");
 
   const menus = computed(() => {
     if(isSubfield.value) {
@@ -57,7 +57,6 @@ export function useMenu() {
   );
 
   const to = (id: string) => {
-    console.log(`to -->`, id)
     router.push(id);
   };
 

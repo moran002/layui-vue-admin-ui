@@ -78,7 +78,7 @@ export default defineComponent({
               await userStore.loadUserInfo()
               await userStore.loadMenus()
               await userStore.loadPermissions()
-              router.push('/')
+              router.push("/index/index")
             })
           } else {
             layer.msg(msg, { icon: 2 })
