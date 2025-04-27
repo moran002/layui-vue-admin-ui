@@ -1,6 +1,6 @@
 import { computed, Ref, ref, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
-import { useAppStore } from "../../store/app";
+import { useAppStore } from "@/store/app";
 
 export function useTab() {
 

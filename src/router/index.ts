@@ -28,17 +28,21 @@ export const resetRouter = () => {
 export const addRoutes = async () => {
   try {
     const userStore = useUserStore()
-    await userStore.loadUserInfo()
-    await userStore.loadMenus()
-    await userStore.loadPermissions()
-    // 获取路由数据（如果还没有获取过）
-    const res = await AuthService.getRouters()
-    // 转换路由配置
-    const transformedRoutes =  transformRoutes(res.data)
-    // 添加路由
-    transformedRoutes.forEach(route => {
-      router.addRoute(route)
-    })
+    if (!userStore.hasGetRouters) {
+      // 获取路由数据（如果还没有获取过）
+      const res = await AuthService.getRouters()
+      userStore.routers = res.data
+      userStore.hasGetRouters = true
+    }
+    if (router.getRoutes().length <= 7) {
+      // 转换路由配置
+      const transformedRoutes =  transformRoutes(userStore.routers)
+      // 添加路由
+      transformedRoutes.forEach(route => {
+        router.addRoute(route)
+      })
+    }
+    console.log(router.getRoutes().length)
   } catch (error) {
     // 获取信息失败，清除token并跳转到登录页
     const userStore = useUserStore()
@@ -56,14 +60,14 @@ export const addRoutes = async () => {
  * @param to 目标
  * @param from 来至 
  */
-router.beforeEach((to: RouteLocationNormalized, from: RouteLocationNormalized, next: NavigationGuardNext) => {
+router.beforeEach(async (to: RouteLocationNormalized, from: RouteLocationNormalized, next: NavigationGuardNext) => {
   NProgress.start();
 
   const userStore = useUserStore();
   if (userStore.token) {
-    addRoutes();
-    next();
-  }else {
+    await addRoutes()
+    next()
+  } else {
     // 未登录
     if (to.path === '/login') {
       next()
@@ -71,11 +75,16 @@ router.beforeEach((to: RouteLocationNormalized, from: RouteLocationNormalized, n
       next(`/login?redirect=${to.path}`)
     }
   }
+
 })
 
 router.afterEach(() => {
   NProgress.done();
 })
+
+router.onError((error) => {
+  console.error('路由错误:', error);
+});
 
 
 export default router

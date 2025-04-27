@@ -1,10 +1,10 @@
 import { layer } from "@layui/layui-vue";
 import { computed, ComputedRef, ref, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
-import { diff } from "../../library/arrayUtil";
-import { getParents, getNode } from "../../library/treeUtil";
-import { useAppStore } from "../../store/app";
-import { useUserStore } from "../../store/user";
+import { diff } from "@/library/arrayUtil";
+import { getParents, getNode } from "@/library/treeUtil";
+import { useAppStore } from "@/store/app";
+import { useUserStore } from "@/store/user";
 
 export function useMenu() {
 
@@ -16,7 +16,7 @@ export function useMenu() {
   const openKeys = ref<string[]>([]);
   const isAccordion = computed(() => appStore.accordion);
   const isSubfield = computed(() => appStore.subfield);
-  const mainSelectedKey = ref("/workspace");
+  const mainSelectedKey = ref("/index");
 
   const menus = computed(() => {
     if(isSubfield.value) {

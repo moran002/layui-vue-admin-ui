@@ -21,7 +21,7 @@ export default {
 </script>
 
 <script lang="ts" setup>
-import { useAppStore } from "../../store/app";
+import { useAppStore } from "@/store/app";
 import GlobalMenuItem from "./GlobalMenuItem.vue";
 
 const appStore = useAppStore();

@@ -75,7 +75,10 @@ export default defineComponent({
           if (code == 200) {
             layer.msg(msg, { icon: 1 }, async () => {
               userStore.token = data
-              router.push('/index/index')
+              await userStore.loadUserInfo()
+              await userStore.loadMenus()
+              await userStore.loadPermissions()
+              router.push('/')
             })
           } else {
             layer.msg(msg, { icon: 2 })

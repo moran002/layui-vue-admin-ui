@@ -10,6 +10,7 @@ export const useUserStore = defineStore({
       permissions: [],
       menus: [],
       hasGetRouters: false,
+      routers: [],
     }
   },
   actions: {
@@ -34,6 +35,6 @@ export const useUserStore = defineStore({
   },
   persist: {
     storage: localStorage,
-    paths: ['token', 'userInfo', 'permissions', 'menus' ],
+    paths: ['token', 'userInfo', 'permissions', 'menus' , 'routers', 'hasGetRouters'],
   }
 })
