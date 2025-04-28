@@ -5,7 +5,7 @@ import Components from "@layui/unplugin-vue-components/vite";
 import { LayuiVueResolver } from '@layui/unplugin-vue-components/resolvers'
 import { resolve } from "path";
 
-const excludeComponents = ['LightIcon','DarkIcon']
+const excludeComponents = ['LightIcon','DarkIcon', 'LayJsonSchemaForm']
 
 export default defineConfig({
   resolve: {

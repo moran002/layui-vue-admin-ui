@@ -1,5 +1,5 @@
 import axios, { AxiosRequestHeaders, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
-import { useUserStore } from "../store/user";
+import { useUserStore } from "@/store/user";
 import { layer } from '@layui/layui-vue';
 import router from '../router'
 
@@ -35,21 +35,21 @@ class Http {
 
         /* 响应拦截 */
         this.service.interceptors.response.use((response: AxiosResponse<any>) => {
-            switch (response.data.code) {
-                case 200:
-                    return response.data;
-                case 500:
-                    return response.data;
-                case 99998:
-                    layer.confirm(
-                    '会话超时, 请重新登录', 
-                    { icon : 2, yes: function(){
-                        router.push('/login');
-                        layer.closeAll()
-                    }});
-                    return response.data;
-                default:
-                    break;
+            if (response.data.code <= 200) {
+                return response.data;
+            }else if (response.data.code >= 400 && response.data.code < 500) {
+                layer.msg(
+                    '登录超时,请重新登录',
+                    { icon : 2, time: 1000, yes: function(){
+                            router.push('/login');
+                            layer.closeAll()
+                        }});
+                return Promise.reject(response.data.msg);
+            }else {
+                layer.msg(
+                    response.data.msg,
+                    { icon : 7, time: 1500});
+                return Promise.reject(response.data.msg);
             }
         }, error => {
             return Promise.reject(error)

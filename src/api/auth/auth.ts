@@ -1,4 +1,4 @@
-import Http from '../http';
+import Http from '@/api/http';
 
 export class AuthService {
   // 登录
