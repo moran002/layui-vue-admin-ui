@@ -78,10 +78,8 @@ export default defineComponent({
               await userStore.loadUserInfo()
               await userStore.loadMenus()
               await userStore.loadPermissions()
-              router.push("/index/index")
+              router.push("/index")
             })
-          } else {
-            layer.msg(msg, { icon: 2 })
           }
         }, 1000)
       })

@@ -2,12 +2,20 @@ import Http from '@/api/http';
 
 export class UserService {
     // 删除
-    static del(saveFrom: any) {
-        return Http.delete('/system/user/update', saveFrom)
+    static del(id: string) {
+        return Http.delete('/system/user/del?id=' + id, )
+    }
+    // 状态
+    static status(saveFrom: any) {
+        return Http.post('/system/user/status', saveFrom)
+    }
+    // 重置密码
+    static password(saveFrom: any) {
+        return Http.post('/system/user/password', saveFrom)
     }
     // 更新
     static update(saveFrom: any) {
-        return Http.put('/system/user/update', saveFrom)
+        return Http.post('/system/user/update', saveFrom)
     }
     // 新增
     static create(saveFrom: any) {

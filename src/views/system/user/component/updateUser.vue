@@ -1,7 +1,7 @@
 <template>
   <lay-layer v-model="update" :title="title" :area="['70%', '100%']">
+    <lay-json-schema-form :model="updateParams" :schema="updateSchema" ></lay-json-schema-form>
     <div style="width: 100%; text-align: center">
-      <lay-json-schema-form :model="updateParams" :schema="updateSchema" ></lay-json-schema-form>
       <lay-button type="primary" @click="save">提交</lay-button>
       <lay-button size="sm" @click="cancel">取消</lay-button>
     </div>
@@ -15,8 +15,8 @@ import {RoleService} from "@/api/system/role";
 import {UserService} from "@/api/system/user";
 import {layer} from "@layui/layui-vue";
 
+
 const showEdit = (row: any) => {
-  update.value = true;
   findRoles();
   if (!row) {
     title.value = '添加'
@@ -24,6 +24,7 @@ const showEdit = (row: any) => {
     title.value = '编辑'
     updateParams.value = JSON.parse(JSON.stringify(row))
   }
+  update.value = true;
 }
 
 const findRoles = async () => {
@@ -43,24 +44,26 @@ const cancel = async () => {
     roleIds: [],
   }
 }
-
+const emits = defineEmits(['fetchData']);
 const save = () => {
   if (updateParams.value.id) {
-    UserService.update(updateSchema).then((res) => {
-      layer.msg(res.msg, {icon: 1, time: 1000})
+    UserService.update(updateParams.value).then((res) => {
       update.value = false;
-      emit('success')
+      if (res.code === 200) {
+        layer.msg(res.msg, {icon: 1, time: 1000})
+        emits('fetchData')
+      }
     })
   }else {
-    UserService.create(updateSchema).then((res) => {
-      layer.msg(res.msg, {icon: 1, time: 1000})
+    UserService.create(updateParams.value).then((res) => {
       update.value = false;
-      emit('success')
+      if (res.code === 200) {
+        layer.msg(res.msg, {icon: 1, time: 1000})
+        emits('fetchData')
+      }
     })
   }
 }
-
-const emit = defineEmits(['success']);
 defineExpose({showEdit})
 </script>
 

@@ -25,8 +25,7 @@ export const updateSchema = reactive({
             placeholder: '请输入账号',
         },
         colProps: {
-            md: 15,
-            align: 'center',
+            md: 12,
         }
     },
     nickName: {
@@ -35,10 +34,9 @@ export const updateSchema = reactive({
         props: {
             type: 'text',
             placeholder: '请输入昵称',
-            required: true,
         },
         colProps: {
-            md: 15
+            md: 12
         }
     },
     mobile: {
@@ -49,7 +47,7 @@ export const updateSchema = reactive({
             placeholder: '请输入手机号',
         },
         colProps: {
-            md: 15
+            md: 12
         }
     },
     email: {
@@ -60,8 +58,7 @@ export const updateSchema = reactive({
             placeholder: '请输入邮箱',
         },
         colProps: {
-            md: 15,
-            textAlign: 'center'
+            md: 12,
         }
     },
     remark: {
@@ -71,7 +68,7 @@ export const updateSchema = reactive({
             placeholder: '请输入备注',
         },
         colProps: {
-            md: 15,
+            md: 20,
         }
     },
     roleIds: {

@@ -83,6 +83,8 @@
           :data-source="list"
           @change="change"
           :id="list.id"
+          :even="true"
+          :autoColsWidth="true"
       >
         <template #status="{ row }">
           <lay-switch
@@ -91,14 +93,15 @@
           ></lay-switch>
         </template>
         <template #avatar="{ row }">
-          <lay-avatar radius="true">{{row.nickName}}</lay-avatar>
+          <lay-avatar radius="true">{{ row.nickName }}</lay-avatar>
         </template>
 
         <template v-slot:toolbar>
           <lay-button
+              v-permission="['system:user:add']"
               size="sm"
               type="primary"
-              @click="updateTable('新增', null)"
+              @click="updateTable(null)"
           >
             <lay-icon class="layui-icon-addition"></lay-icon>
             新增
@@ -107,41 +110,90 @@
         </template>
         <template v-slot:operator="{ row }">
           <lay-button
+              v-permission="['system:user:update']"
               size="xs"
               type="primary"
-              @click="updateTable('编辑', row)"
+              @click="updateTable( row)"
           >编辑
-          </lay-button
-          >
-          <lay-popconfirm
-              content="确定要删除此用户吗?"
-              @confirm="confirm"
-              @cancel="cancel"
-          >
-            <lay-button size="xs" border="red" border-style="dashed"
-            >删除
-            </lay-button
-            >
-          </lay-popconfirm>
+          </lay-button>
+          <lay-button
+              v-permission="['system:user:password']"
+              size="xs"
+              type="primary"
+              @click="passwordTable( row)"
+          >重置密码
+          </lay-button>
+          <lay-button
+              v-permission="['system:user:del']"
+              size="xs"
+              type="primary"
+              @click="delUser(row.id)"
+          >删除
+          </lay-button>
         </template>
       </lay-table>
     </div>
 
     <update-user ref="editRef" @fetchData="fetchData"/>
+    <password-user ref="passwordRef"/>
   </lay-container>
 </template>
 <script setup lang="ts">
 import {ref, onMounted} from 'vue'
-import {queryForm, list, loading, page, columns, isExpand} from './model/user';
+import {queryForm, list, loading, page, columns, isExpand, statusUser} from './model/user';
 import {UserService} from "@/api/system/user";
 import UpdateUser from "@/views/system/user/component/updateUser.vue";
+import {layer} from "@layui/layui-vue";
+import PasswordUser from "@/views/system/user/component/passwordUser.vue";
 
 const editRef = ref<any>();
+// =============== 删除 ===============//
+const delUser = (userId: string) => {
+  layer.confirm("确认要删除吗?",
+      {
+        btn: [
+          {
+            text: '确定', callback: (id) => {
+              UserService.del(userId).then((res) => {
+                if (res.code == 200) {
+                  layer.msg("删除成功");
+                  fetchData();
+                } else {
+                  layer.msg("删除失败");
+                }
+                layer.close(id);
+              })
+            }
+          },
+          {
+            text: '取消', callback: (id) => {
+              layer.msg("取消");
+              layer.close(id);
+            }
+          }
+        ]
+      }
+  );
+
+}
 // =============== 更新 ===============//
 const updateTable = (row: any) => {
   editRef.value.showEdit(row)
 }
+// =============== 重置密码 ===============//
 const passwordRef = ref<any>();
+const passwordTable = (row: any) => {
+  passwordRef.value.showPassword(row)
+}
+// =============== 状态变更 ===============//
+const changeStatus = (isChecked: boolean, row: any) => {
+  row.status = isChecked;
+  UserService.status(row).then((res) => {
+    if (res.code === 200) {
+      layer.msg(res.msg, {icon: 1, time: 1000})
+    }
+  })
+}
 
 // =============== 基础查询 ===============//
 function toReset() {

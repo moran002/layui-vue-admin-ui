@@ -39,17 +39,18 @@ class Http {
                 return response.data;
             }else if (response.data.code >= 400 && response.data.code < 500) {
                 layer.msg(
-                    '登录超时,请重新登录',
-                    { icon : 2, time: 1000, yes: function(){
+                    response.data.msg,
+                    { icon : 2, time: 2000, yes: function(){
                             router.push('/login');
                             layer.closeAll()
                         }});
+                router.push('/login');
                 return Promise.reject(response.data.msg);
             }else {
                 layer.msg(
                     response.data.msg,
                     { icon : 7, time: 1500});
-                return Promise.reject(response.data.msg);
+                return response.data;
             }
         }, error => {
             return Promise.reject(error)
