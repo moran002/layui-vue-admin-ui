@@ -8,6 +8,9 @@ import { resolve } from "path";
 const excludeComponents = ['LightIcon','DarkIcon', 'LayJsonSchemaForm']
 
 export default defineConfig({
+  build: {
+    target: 'es2022' // 或更高级别如 'esnext'
+  },
   resolve: {
     alias: [
       {
