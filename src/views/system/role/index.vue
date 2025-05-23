@@ -56,7 +56,6 @@ import {layer} from '@layui/layui-vue'
 import UpdateRole from "@/views/system/role/component/updateRole.vue";
 import PermissionRoleMenu from "@/views/system/role/component/permissionRoleMenu.vue";
 import {RoleService} from "@/api/system/role";
-import {loading, list, queryRole, columns} from "@/views/system/role/model/role"
 
 const editRef = ref<any>();
 const permissionRef = ref<any>();
@@ -118,6 +117,34 @@ const delById = (roleId: any) => {
       }
   );
 }
+
+const columns =  [
+  {title: '编号', width: '80px', key: 'id', fixed: 'left'},
+  {title: '角色名称', width: '80px', key: 'name'},
+  {title: '备注', width: '260px', key: 'remark'},
+  {title: '创建时间', width: '120px', key: 'createTime'},
+  {
+    title: '操作',
+    width: '150px',
+    customSlot: 'operator',
+    key: 'operator',
+    fixed: 'right'
+  }
+]
+
+const loading = ref(true);
+
+const permissionMenu = ref(false);
+const list = ref([])
+const menus = ref([])
+
+const queryRole = ref({
+  pageNo: 1,
+  pageSize: 10,
+  total: '',
+  roleName: '',
+  remark: '',
+})
 </script>
 
 <style scoped>

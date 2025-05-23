@@ -11,8 +11,8 @@
 <script setup lang="ts">
 
 import {layer} from "@layui/layui-vue";
-import {edit, title, updateRole, schema} from "@/views/system/role/model/updateRole";
 import {RoleService} from "@/api/system/role";
+import {reactive, ref} from "vue";
 
 const emits = defineEmits(['fetchData']);
 const showEdit = (row: any) => {
@@ -55,6 +55,34 @@ const save = () => {
 }
 
 defineExpose({showEdit})
+
+const edit = ref(false);
+const title = ref("")
+
+const updateRole= ref({
+  id: '',
+  name: '',
+  remark: '',
+})
+
+const schema = reactive({
+  name: {
+    label: '角色名称',
+    type: 'input',
+    props: {
+      type: 'text',
+      placeholder: '请输入角色名称',
+    }
+  },
+  remark: {
+    label: '描述',
+    type: 'input',
+    props: {
+      type: 'text',
+      placeholder: '请输入描述',
+    }
+  },
+})
 </script>
 
 <style scoped>

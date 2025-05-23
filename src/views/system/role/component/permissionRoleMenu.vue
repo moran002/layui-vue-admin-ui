@@ -28,6 +28,7 @@ import {layer} from "@layui/layui-vue";
 import {permissionMenu, updateRole, menuIds, menus} from "@/views/system/role/model/permissionRole"
 import {MenuService} from "@/api/system/menu";
 import {RoleService} from "@/api/system/role";
+import {ref} from "vue";
 
 
 const showPermissionMenu = async (row: any) => {
@@ -70,6 +71,14 @@ const save = () => {
 }
 
 defineExpose({showPermissionMenu});
+
+const permissionMenu = ref(false);
+const menuIds = ref([]);
+const menus = ref([])
+const updateRole= ref({
+  id: '',
+  menuIds: [],
+})
 </script>
 
 <style scoped>

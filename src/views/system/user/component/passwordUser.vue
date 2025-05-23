@@ -10,9 +10,9 @@
 
 
 <script setup lang="ts">
-import {password, passwordParams, passwordSchema} from "@/views/system/user/model/passwordUser";
 import {UserService} from "@/api/system/user";
 import {layer} from "@layui/layui-vue";
+import {reactive, ref} from "vue";
 
 const showPassword = (row: any) => {
   passwordParams.value = JSON.parse(JSON.stringify(row))
@@ -35,6 +35,38 @@ const save = () => {
   })
 }
 defineExpose({showPassword})
+
+const password = ref(false);
+const passwordParams = ref({
+  id: '',
+  password: '',
+  password2: '',
+})
+
+const passwordSchema = reactive({
+  password: {
+    label: '新密码',
+    type: 'input',
+    props: {
+      type: 'text',
+      placeholder: '请输入新密码',
+    },
+    colProps: {
+      md: 20,
+    }
+  },
+  password2: {
+    label: '确认密码',
+    type: 'input',
+    props: {
+      type: 'text',
+      placeholder: '请输入新密码',
+    },
+    colProps: {
+      md: 20
+    }
+  },
+})
 </script>
 
 <style scoped>
