@@ -30,6 +30,7 @@ const cancel = async () => {
   updateMenu.value = {
     id: '',
     parentId: '',
+    name: '',
     title: '',
     type: 1,
     sort: 0,
@@ -68,7 +69,6 @@ const save = () => {
       }
     });
   }
-
 }
 
 defineExpose({showEdit});
@@ -78,6 +78,7 @@ const title = ref('');
 const updateMenu = ref({
   id: '',
   parentId: '',
+  name: '',
   title: '',
   type: 1,
   sort: 0,
@@ -91,6 +92,13 @@ const updateMenu = ref({
 const schema = reactive({
   parentId: {
     label: 'parentId',
+    type: 'input',
+    props: {
+      type: 'text',
+    }
+  },
+  name: {
+    label: 'name',
     type: 'input',
     props: {
       type: 'text',
