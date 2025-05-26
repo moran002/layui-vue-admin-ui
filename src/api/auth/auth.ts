@@ -28,6 +28,6 @@ export class AuthService {
 
   // 登出
   static logout() {
-    return Http.get('/auth/logout')
+    return Http.post('/auth/logout')
   }
 }

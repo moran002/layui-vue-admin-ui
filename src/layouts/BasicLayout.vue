@@ -268,13 +268,16 @@ export default {
     }
 
     const logOut = () => {
-      const userInfoStore = useUserStore()
-      AuthService.logout()
-      userInfoStore.token = ''
-      userInfoStore.userInfo = {}
-      userInfoStore.hasGetRouters = false
-      resetRouter()
-      router.push('/login')
+      AuthService.logout().then((res) => {
+        if (res.code == 200) {
+          const userInfoStore = useUserStore()
+          userInfoStore.token = ''
+          userInfoStore.userInfo = {}
+          userInfoStore.hasGetRouters = false
+          resetRouter()
+          router.push('/login')
+        }
+      })
     }
 
     const locales = [
