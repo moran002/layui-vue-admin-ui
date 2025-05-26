@@ -12,7 +12,7 @@ export const useAppStore = defineStore({
       collapse: false,
       subfield: false,
       locale: "zh_CN",
-      subfieldPosition: "side",
+      subfieldPosition: "body",
       theme: 'light',
       breadcrumb: true,
       sideWidth: "220px",

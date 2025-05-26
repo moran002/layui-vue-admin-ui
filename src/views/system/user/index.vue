@@ -65,19 +65,19 @@
         </template>
 
         <template v-slot:toolbar>
-          <lay-button v-permission="['system:user:add']" size="sm" type="primary" @click="updateTable(null)">
+          <lay-button v-permission="['system:user:create']" size="sm" type="primary" @click="updateTable(null)">
             <lay-icon class="layui-icon-addition"></lay-icon>
             新增
           </lay-button>
         </template>
         <template v-slot:operator="{ row }">
-          <lay-button v-permission="['system:user:update']" size="xs" type="primary" @click="updateTable( row)">
+          <lay-button v-permission="['system:user:update']" size="xs" border="green" border-style="dashed" @click="updateTable( row)">
             编辑
           </lay-button>
-          <lay-button v-permission="['system:user:password']" size="xs" type="primary" @click="passwordTable( row)">
+          <lay-button v-permission="['system:user:password']" size="xs" border="green" border-style="dashed" @click="passwordTable( row)">
             重置密码
           </lay-button>
-          <lay-button v-permission="['system:user:del']" size="xs" type="primary" @click="delUser(row.id)">
+          <lay-button v-permission="['system:user:del']" size="xs" border="red" border-style="dashed" @click="delUser(row.id)">
             删除
           </lay-button>
         </template>

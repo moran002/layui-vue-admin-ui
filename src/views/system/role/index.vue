@@ -26,20 +26,19 @@
       <lay-table class="table-box" :page="queryRole" :height="'100%'" :columns="columns" :loading="loading"
                  :default-toolbar="['filter']" :data-source="list" @change="change" :autoColsWidth="true">
         <template v-slot:toolbar>
-          <lay-button v-permission="['system:role:create']" type="primary" @click="updateTable(null)">
-            <lay-icon class="layui-icon-addition">
-            </lay-icon>
+          <lay-button v-permission="['system:role:create']" size="sm" type="primary" @click="updateTable(null)">
+            <lay-icon class="layui-icon-addition"></lay-icon>
             新增
           </lay-button>
         </template>
         <template v-slot:operator="{ row }">
           <lay-button v-permission="['system:role:update']" size="xs" border="green" border-style="dashed"
-                      @click="updateTable(row)"          >编辑
+                      @click="updateTable(row)">编辑
           </lay-button>
-          <lay-button v-permission="['system:role:permission']" size="xs" border="blue" border-style="dashed"
+          <lay-button v-permission="['system:role:permission']" size="xs" border="green" border-style="dashed"
                       @click="updatePermissionMenu(row)">分配权限
           </lay-button>
-          <lay-button v-permission="['system:role:del']" size="xs" border="blue" border-style="dashed"
+          <lay-button v-permission="['system:role:del']" size="xs" border="red" border-style="dashed"
                       @click="delById(row.id)">删除
           </lay-button>
         </template>
@@ -118,7 +117,7 @@ const delById = (roleId: any) => {
   );
 }
 
-const columns =  [
+const columns = [
   {title: '编号', width: '80px', key: 'id', fixed: 'left'},
   {title: '角色名称', width: '80px', key: 'name'},
   {title: '备注', width: '260px', key: 'remark'},

@@ -23,7 +23,8 @@
         :width="sideWidth"
         :class="appStore.sideTheme == 'dark' ? 'dark changeBgc' : 'light'"
       >
-        <lay-logo v-if="appStore.logo"></lay-logo>
+        <!--右上角-->
+        <lay-logo v-if="appStore.logo">Layui Vue Vite</lay-logo>
         <div class="side-menu-wrapper">
           <div
             class="side-menu1"
@@ -126,37 +127,11 @@
                 ></lay-icon>
               </global-message-tab>
             </lay-menu-item>
-<!--            <lay-menu-item>-->
-<!--              <lay-dropdown placement="bottom">-->
-<!--                <lay-icon type="layui-icon-website"></lay-icon>-->
-<!--                <template #content>-->
-<!--                  <lay-dropdown-menu>-->
-<!--                    <lay-dropdown-menu-item-->
-<!--                      @click="() => (appStore.locale = 'zh_CN')"-->
-<!--                    >-->
-<!--                      <template #default>中文</template>-->
-<!--                    </lay-dropdown-menu-item>-->
-<!--                    <lay-dropdown-menu-item-->
-<!--                      @click="() => (appStore.locale = 'en_US')"-->
-<!--                    >-->
-<!--                      <template #default>英文</template>-->
-<!--                    </lay-dropdown-menu-item>-->
-<!--                  </lay-dropdown-menu>-->
-<!--                </template>-->
-<!--              </lay-dropdown>-->
-<!--            </lay-menu-item>-->
             <lay-menu-item>
               <lay-dropdown placement="bottom">
                 <lay-avatar >{{userInfoStore.userInfo.nickName}}</lay-avatar>
                 <template #content>
                   <lay-dropdown-menu>
-<!--                    <lay-dropdown-menu-item @click="toUserInfo">-->
-<!--                      <template #default>用户信息</template>-->
-<!--                    </lay-dropdown-menu-item>-->
-<!--                    <lay-dropdown-menu-item @click="toSystemSet">-->
-<!--                      <template #default>系统设置</template>-->
-<!--                    </lay-dropdown-menu-item>-->
-<!--                    <lay-line></lay-line>-->
                     <lay-dropdown-menu-item @click="logOut">
                       <template #default>注销登录</template>
                     </lay-dropdown-menu-item>
@@ -294,7 +269,7 @@ export default {
     }
 
     const flag = ref(false)
-    
+
     function changeDropdown() {
       flag.value = !flag.value
     }

@@ -32,11 +32,9 @@
       </lay-form>
     </lay-card>
 
-    <div class="table-box">
-      <lay-table  :page="page" :height="'100%'" :columns="columns" :loading="loading"
-                 :data-source="list" @change="change" :id="list.id" :even="true" :autoColsWidth="true">
-      </lay-table>
-    </div>
+    <lay-table class="table-box"  :page="page" :height="'100%'" :columns="columns" :loading="loading"
+               :data-source="list" @change="change" :id="list.id" :even="true" :autoColsWidth="true">
+    </lay-table>
   </lay-container>
 </template>
 <script setup lang="ts">
@@ -120,7 +118,7 @@ onMounted(() => {
   width: 100%;
   border-radius: 4px;
   box-sizing: border-box;
-  overflow: hidden;
+  overflow: auto;
   background-color: #fff;
 }
 </style>
