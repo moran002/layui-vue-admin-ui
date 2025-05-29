@@ -37,6 +37,7 @@ declare module 'vue' {
     LaySelect: typeof import('@layui/layui-vue')['LaySelect']
     LaySelectOption: typeof import('@layui/layui-vue')['LaySelectOption']
     LaySide: typeof import('@layui/layui-vue')['LaySide']
+    LaySpace: typeof import('@layui/layui-vue')['LaySpace']
     LaySubMenu: typeof import('@layui/layui-vue')['LaySubMenu']
     LaySwitch: typeof import('@layui/layui-vue')['LaySwitch']
     LayTab: typeof import('@layui/layui-vue')['LayTab']

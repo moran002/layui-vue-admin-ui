@@ -61,7 +61,7 @@ export default {
 import globalSetupItem from './GlobalSetupItem.vue'
 import globalSetupTheme from './GlobalSetupTheme.vue'
 import globalColor from './GlobalColor.vue'
-import { useAppStore } from '../../store/app'
+import { useAppStore } from '@/store/app'
 import { ref, watch } from 'vue'
 
 const appStore = useAppStore()

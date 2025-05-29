@@ -47,7 +47,7 @@ export default {
 <script lang="ts" setup>
 import { ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import { useAppStore } from '../../store/app'
+import { useAppStore } from '@/store/app'
 import { useTab } from '../composable/useTab'
 
 const appStore = useAppStore()

@@ -1,61 +1,67 @@
 <template>
   <lay-container fluid="true" class="user-box">
-    <lay-card>
-      <lay-form style="margin-top: 10px">
-        <lay-row space="10">
-          <lay-col :md="4">
-            <lay-form-item label="账号:" label-width="80" size="sm">
-              <lay-input v-model="queryForm.account" placeholder="请输入" :allow-clear="true"
-                         size="sm" style="width: 100%">
+    <lay-card class="search-card">
+      <lay-form>
+        <lay-row :gutter="20">
+          <lay-col :md="6" :sm="12" :xs="24">
+            <lay-form-item label="账号:" label-width="80">
+              <lay-input v-model="queryForm.account" placeholder="请输入" :allow-clear="true">
               </lay-input>
             </lay-form-item>
           </lay-col>
 
-          <lay-col :md="4" v-show="isExpand">
-            <lay-form-item label="昵称:" label-width="80" size="sm">
-              <lay-input v-model="queryForm.nickName" placeholder="请输入" :allow-clear="true" size="sm"
-                         style="width: 100%">
+          <lay-col :md="6" :sm="12" :xs="24" v-show="isExpand">
+            <lay-form-item label="昵称:" label-width="80">
+              <lay-input v-model="queryForm.nickName" placeholder="请输入" :allow-clear="true">
               </lay-input>
             </lay-form-item>
           </lay-col>
 
-          <lay-col :md="4" v-show="isExpand">
-            <lay-form-item label="手机号:" label-width="80" size="sm">
-              <lay-input v-model="queryForm.mobile" placeholder="请输入" :allow-clear="true" size="sm"
-                         style="width: 100%">
+          <lay-col :md="6" :sm="12" :xs="24" v-show="isExpand">
+            <lay-form-item label="手机号:" label-width="80">
+              <lay-input v-model="queryForm.mobile" placeholder="请输入" :allow-clear="true">
               </lay-input>
             </lay-form-item>
           </lay-col>
 
-          <lay-col :md="4" v-show="isExpand">
-            <lay-form-item label="角色:" label-width="80" size="sm">
-              <lay-input v-model="queryForm.roleId" placeholder="请输入" :allow-clear="true" size="sm"
-                         style="width: 100%">
+          <lay-col :md="6" :sm="12" :xs="24" v-show="isExpand">
+            <lay-form-item label="角色:" label-width="80">
+              <lay-input v-model="queryForm.roleId" placeholder="请输入" :allow-clear="true">
               </lay-input>
             </lay-form-item>
           </lay-col>
 
-          <lay-col :md="4">
-            <lay-form-item label-width="20">
-              <lay-button style="margin-left: 20px" border="blue" size="sm" @click="toSearch">
-                查询
-              </lay-button>
-              <lay-button size="sm" @click="toReset">
-                重置
-              </lay-button>
-              <lay-button size="sm" type="link" @click="isExpand = !isExpand">
-                {{ isExpand ? '收起' : '展开' }}
-              </lay-button>
+          <lay-col :md="6" :sm="12" :xs="24" class="action-col">
+            <lay-form-item>
+              <lay-space>
+                <lay-button border="blue" @click="toSearch">
+                  查询
+                </lay-button>
+                <lay-button @click="toReset">
+                  重置
+                </lay-button>
+                <lay-button type="link" @click="isExpand = !isExpand">
+                  {{ isExpand ? '收起' : '展开' }}
+                  <lay-icon :type="isExpand ? 'up' : 'down'"></lay-icon>
+                </lay-button>
+              </lay-space>
             </lay-form-item>
           </lay-col>
         </lay-row>
       </lay-form>
     </lay-card>
 
-    <div>
-      <lay-table class="table-box" :page="page" :height="'100%'" :columns="columns" :loading="loading"
-                 :default-toolbar="['filter']" :data-source="list" @change="change" :id="list.id" :even="true"
-                 :autoColsWidth="true">
+    <lay-card class="table-card">
+      <lay-table
+          :page="page"
+          :columns="columns"
+          :loading="loading"
+          :default-toolbar="['filter']"
+          :data-source="list"
+          @change="change"
+          :even="true"
+          :auto-cols-width="true">
+
         <template #status="{ row }">
           <lay-switch :model-value="row.status" @change="changeStatus($event, row)">
           </lay-switch>
@@ -65,24 +71,29 @@
         </template>
 
         <template v-slot:toolbar>
-          <lay-button v-permission="['system:user:create']" size="sm" type="primary" @click="updateTable(null)">
-            <lay-icon class="layui-icon-addition"></lay-icon>
-            新增
-          </lay-button>
+          <lay-space>
+            <lay-button v-permission="['system:user:create']" type="primary" @click="updateTable(null)">
+              <lay-icon type="addition"></lay-icon>
+              新增
+            </lay-button>
+          </lay-space>
         </template>
+
         <template v-slot:operator="{ row }">
-          <lay-button v-permission="['system:user:update']" size="xs" border="green" border-style="dashed" @click="updateTable( row)">
-            编辑
-          </lay-button>
-          <lay-button v-permission="['system:user:password']" size="xs" border="green" border-style="dashed" @click="passwordTable( row)">
-            重置密码
-          </lay-button>
-          <lay-button v-permission="['system:user:del']" size="xs" border="red" border-style="dashed" @click="delUser(row.id)">
-            删除
-          </lay-button>
+          <lay-space>
+            <lay-button v-permission="['system:user:update']" size="sm" border="green" border-style="dashed" @click="updateTable(row)">
+              编辑
+            </lay-button>
+            <lay-button v-permission="['system:user:password']" size="sm" border="blue" border-style="dashed" @click="passwordTable(row)">
+              重置密码
+            </lay-button>
+            <lay-button v-permission="['system:user:del']" size="sm" border="red" border-style="dashed" @click="delUser(row.id)">
+              删除
+            </lay-button>
+          </lay-space>
         </template>
       </lay-table>
-    </div>
+    </lay-card>
 
     <update-user ref="editRef" @fetchData="fetchData"/>
     <password-user ref="passwordRef"/>
@@ -219,19 +230,41 @@ onMounted(() => {
 
 <style scoped>
 .user-box {
+  padding: 15px;
   height: calc(100vh - 110px);
-  margin-top: 10px;
   box-sizing: border-box;
-  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
-.table-box {
-  margin-top: 10px;
-  padding: 10px;
-  height: 700px;
-  width: 100%;
+.search-card {
   border-radius: 4px;
-  box-sizing: border-box;
-  background-color: #fff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+.table-card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  border-radius: 4px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+.action-col {
+  display: flex;
+  justify-content: flex-end;
+}
+
+@media (max-width: 768px) {
+  .user-box {
+    padding: 10px;
+    height: calc(100vh - 90px);
+  }
+
+  .search-card, .table-card {
+    border-radius: 2px;
+  }
 }
 </style>
