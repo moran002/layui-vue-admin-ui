@@ -65,8 +65,9 @@ function toChangPage(id: any) {
   display: flex;
   position: relative;
   box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
-  border-top: 1px solid whitesmoke;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
   z-index: 999;
+  transition: all 0.3s ease;
 }
 
 .global-tab .layui-tab {
@@ -76,7 +77,8 @@ function toChangPage(id: any) {
 
 .global-tab .layui-tab .layui-tab-bar {
   border: none;
-  border-left: 1px solid whitesmoke;
+  border-left: 1px solid rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
 }
 
 .global-tab .layui-tab .layui-tab-bar.prev {
@@ -89,39 +91,53 @@ function toChangPage(id: any) {
   height: 100%;
   line-height: 40px;
   text-align: center;
-  border-left: 1px solid whitesmoke;
+  border-left: 1px solid rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  
+  &:hover {
+    background: rgba(0, 0, 0, 0.02);
+  }
 }
 
 .global-tab .layui-tab .dot {
   display: inline-block;
-  background-color: whitesmoke;
+  background-color: rgba(0, 0, 0, 0.1);
   margin-right: 8px;
   border-radius: 50px;
   height: 8px;
   width: 8px;
+  transition: all 0.3s ease;
 }
 
 .global-tab .layui-tab .layui-this .dot {
   background-color: var(--global-primary-color);
 }
 
-.global-tab .layui-tab .layui-tab-close:hover {
-  background: transparent !important;
-  color: #e2e2e2 !important;
+.global-tab .layui-tab .layui-tab-close {
+  transition: all 0.3s ease;
+  
+  &:hover {
+    background: rgba(0, 0, 0, 0.04) !important;
+    color: var(--global-primary-color) !important;
+  }
 }
+
 .designer {
   display: flex;
   width: calc(100% - 15px);
   height: 37px;
   position: relative;
   font-size: 14px;
-  color: dimgray;
+  color: rgba(0, 0, 0, 0.65);
   cursor: pointer;
+  transition: all 0.3s ease;
 
   .layui-tab .layui-tab-bar {
     height: 32px;
     line-height: 32px;
     margin-top: 5px;
+    transition: all 0.3s ease;
   }
 
   .layui-tab .layui-tab-bar.prev {
@@ -131,14 +147,16 @@ function toChangPage(id: any) {
     margin-top: 5px;
   }
 
-  box-shadow: unset;
+  box-shadow: none;
   z-index: 999;
+  
   .designer-tab {
     display: inline-block;
     flex-grow: 1;
     width: 100%;
     padding-left: 15px;
   }
+  
   .designer-tab-item {
     display: inline-block;
     height: 32px !important;
@@ -148,14 +166,22 @@ function toChangPage(id: any) {
     background-color: #fff;
     border-radius: 4px;
     margin-right: 5px;
+    transition: all 0.3s ease;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    
+    &:hover {
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
   }
+  
   .dot {
     display: inline-block;
-    background-color: whitesmoke;
+    background-color: rgba(0, 0, 0, 0.1);
     margin-right: 8px;
     border-radius: 50px;
     height: 8px;
     width: 8px;
+    transition: all 0.3s ease;
   }
 
   .designer-close {
@@ -168,14 +194,19 @@ function toChangPage(id: any) {
     top: 1px;
     text-align: center;
     font-size: 14px;
-    color: var(--global-neutral-color-8);
-    transition: all 0.2s;
-    -webkit-transition: all 0.2s;
+    color: rgba(0, 0, 0, 0.45);
+    transition: all 0.3s ease;
+    
+    &:hover {
+      color: var(--global-primary-color);
+    }
   }
 }
+
 .dot-this {
   background-color: var(--global-primary-color) !important;
 }
+
 .designer-last-icon {
   width: 32px !important;
   height: 32px !important;
@@ -184,5 +215,12 @@ function toChangPage(id: any) {
   line-height: 32px !important;
   text-align: center;
   border-radius: 4px;
+  transition: all 0.3s ease;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  
+  &:hover {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background: rgba(0, 0, 0, 0.02);
+  }
 }
 </style>

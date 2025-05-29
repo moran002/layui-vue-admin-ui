@@ -117,15 +117,62 @@ watch(
 <style>
 .global-setup {
   padding: 10px;
+  transition: all 0.3s ease;
 }
 
 .global-setup-title {
-  font-size: 13px;
-  margin-bottom: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 15px;
   padding: 10px 10px 0px 10px;
+  color: rgba(0, 0, 0, 0.85);
+  transition: all 0.3s ease;
 }
 
 .global-setup .layui-colorpicker {
   margin-right: 10px;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+/* Switch styling improvements */
+:deep(.layui-switch) {
+  transition: all 0.3s ease;
+  
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+/* Select styling improvements */
+:deep(.layui-select) {
+  transition: all 0.3s ease;
+  
+  &:hover {
+    border-color: var(--global-primary-color);
+  }
+}
+
+/* Button styling improvements */
+:deep(.layui-btn) {
+  transition: all 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+/* Line styling improvements */
+:deep(.layui-line) {
+  margin: 15px 0;
+  border-color: rgba(0, 0, 0, 0.06);
 }
 </style>

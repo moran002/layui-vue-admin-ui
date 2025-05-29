@@ -308,93 +308,97 @@ export default {
   .layui-side {
     position: absolute;
     height: 100vh;
+    z-index: 1000;
+    transition: transform 0.3s ease-in-out;
   }
 }
 
-/*鼠标经过背景色，增加了improtant，否则设置无效*/
-.layui-header .layui-nav-item .layui-icon:hover {
-  background: whitesmoke !important;
+/* Header styling improvements */
+.layui-header {
+  box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
+  background: #fff;
+  transition: all 0.3s ease;
+  
+  .layui-nav-item {
+    .layui-icon {
+      color: #666;
+      transition: all 0.3s ease;
+      
+      &:hover {
+        color: var(--global-primary-color);
+        background: rgba(0, 0, 0, 0.04);
+      }
+    }
+  }
 }
 
-/*面包屑颜色兼容*/
-.layui-header .layui-nav-item .layui-breadcrumb a {
-  color: #999 !important;
-}
-
-.layui-header .layui-nav-item .layui-breadcrumb a:nth-last-child(2) {
-  color: #666 !important;
-}
-
-/*图标默认颜色修复，指定 .layui-icon 去掉improtant，否则无法设置图标其他颜色*/
-.layui-header .layui-nav-item .layui-icon {
-  color: #666;
-}
-
-/*取消默认a标签的padding:0 20px，否则扩大图标后容器变形*/
-.layui-header .layui-nav-item > a {
-  padding: 0 !important;
-}
-
-/*扩大图标尺寸与所在容器大小一致，默认大小导致鼠标必须点击图标才能触发事件效果*/
-.layui-header .layui-nav-item .layui-icon {
-  height: 50px;
-  padding: 20px;
-}
-
-/*增加鼠标经过图标时改变图标颜色，颜色为当前系统主题色*/
-.layui-header .layui-nav-item .layui-icon:hover {
-  color: var(--global-primary-color) !important;
-}
-
-.grey-mode {
-  filter: grayscale(1);
-}
-
+/* Side menu improvements */
 .side-menu-wrapper {
   width: 100%;
   overflow-y: auto;
   height: calc(100% - 52px);
   display: flex;
-}
-
-.side-menu-wrapper::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-
-.side-menu-wrapper::-webkit-scrollbar-thumb {
-  border-radius: 10px;
-  background-color: rgb(40, 51, 62);
+  transition: all 0.3s ease;
+  
+  &::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.3);
+    }
+  }
 }
 
 .light .side-menu-wrapper::-webkit-scrollbar-thumb {
-  background-color: #e2e2e2;
+  background-color: rgba(0, 0, 0, 0.1);
+  
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+  }
 }
 
 .side-menu1 {
   width: 60px;
   flex: 0 0 60px;
-  border-right: 1px solid rgba(0, 0, 0, 0.12);
+  border-right: 1px solid rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
 }
 
 .light .side-menu1 {
-  border-right: 1px solid whitesmoke;
+  border-right: 1px solid rgba(0, 0, 0, 0.06);
 }
 
 .side-menu2 {
   flex: 1;
+  transition: all 0.3s ease;
 }
 
+/* Theme improvements */
 .changeBgc {
   background-color: #171717 !important;
+  transition: background-color 0.3s ease;
 }
 
+.grey-mode {
+  filter: grayscale(1);
+  transition: filter 0.3s ease;
+}
+
+/* Tab styling improvements */
 .underpainting {
   .layui-tab-title {
     .layui-this {
       color: var(--global-primary-color) !important;
       border-bottom: 2px solid var(--global-primary-color) !important;
-      background-color: #009b8e0d !important;
+      background-color: rgba(0, 155, 142, 0.08) !important;
+      transition: all 0.3s ease;
 
       .layui-icon {
         color: var(--global-primary-color) !important;
@@ -403,26 +407,16 @@ export default {
   }
 }
 
-.layui-body
-> .global-tab
-> .layui-tab
-> .layui-tab-head
-> .layui-tab-title
-> li {
-  height: 38px;
-  line-height: 38px;
-}
-
 .designer {
   padding-left: 5px;
   box-sizing: border-box;
 
   .layui-tab-head {
-    background-color: unset !important;
+    background-color: transparent !important;
   }
 
   .layui-tab-title {
-    background-color: unset !important;
+    background-color: transparent !important;
 
     > li {
       background-color: #fff;
@@ -430,7 +424,33 @@ export default {
       border-radius: 4px;
       height: 32px !important;
       line-height: 32px !important;
+      transition: all 0.3s ease;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+      
+      &:hover {
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
     }
+  }
+}
+
+/* Avatar and dropdown improvements */
+.layui-avatar {
+  cursor: pointer;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+/* Fullscreen button improvements */
+.layui-icon-screen-full,
+.layui-icon-screen-restore {
+  transition: all 0.3s ease;
+  
+  &:hover {
+    transform: scale(1.1);
   }
 }
 </style>
