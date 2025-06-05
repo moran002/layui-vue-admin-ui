@@ -2,7 +2,6 @@
   <lay-layer
       v-model="details"
       :title="titleText"
-      :area="['600px', '500px']"
       :shade="true"
       :shade-close="false"
       :resize="false"
@@ -159,44 +158,72 @@ defineExpose({showEdit});
 .edit-layer {
   display: flex;
   flex-direction: column;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
 }
 
-.form-container {
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
+.table-card {
+  padding: 16px;
   height: 100%;
+  background-color: #fff;
 }
 
-.form {
-  flex: 1;
-  overflow-y: auto;
-  padding-right: 10px;
+:deep(.layui-table) {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
 }
 
-.form::-webkit-scrollbar {
-  width: 6px;
+:deep(.layui-table-header) {
+  background-color: #fafafa;
+  border-bottom: 1px solid #f0f0f0;
 }
 
-.form::-webkit-scrollbar-thumb {
-  background-color: #e6e6e6;
-  border-radius: 3px;
+:deep(.layui-table-tool) {
+  padding: 12px 0;
+  border-bottom: 1px solid #f0f0f0;
+  margin-bottom: 16px;
 }
 
-.form-actions {
-  padding-top: 20px;
-  border-top: 1px solid #f2f2f2;
-  margin-top: 20px;
-  text-align: center;
+:deep(.layui-btn) {
+  transition: all 0.3s ease;
+  border-radius: 4px;
+}
+
+:deep(.layui-btn:hover) {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+:deep(.layui-table-cell) {
+  padding: 12px 8px;
+}
+
+:deep(.layui-table-row:hover) {
+  background-color: #fafafa;
+}
+
+:deep(.layui-space) {
+  gap: 8px;
+}
+
+:deep(.layui-icon) {
+  margin-right: 4px;
 }
 
 @media (max-width: 768px) {
-  .form-container {
-    padding: 15px;
+  .table-card {
+    padding: 12px;
   }
-
-  .form-actions {
-    padding-top: 15px;
+  
+  :deep(.layui-table-tool) {
+    padding: 8px 0;
+    margin-bottom: 12px;
+  }
+  
+  :deep(.layui-table-cell) {
+    padding: 8px 4px;
   }
 }
 </style>
