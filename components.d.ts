@@ -16,6 +16,8 @@ declare module 'vue' {
     LayCol: typeof import('@layui/layui-vue')['LayCol']
     LayConfigProvider: typeof import('@layui/layui-vue')['LayConfigProvider']
     LayContainer: typeof import('@layui/layui-vue')['LayContainer']
+    LayDescriptions: typeof import('@layui/layui-vue')['LayDescriptions']
+    LayDescriptionsItem: typeof import('@layui/layui-vue')['LayDescriptionsItem']
     LayDropdown: typeof import('@layui/layui-vue')['LayDropdown']
     LayDropdownMenu: typeof import('@layui/layui-vue')['LayDropdownMenu']
     LayDropdownMenuItem: typeof import('@layui/layui-vue')['LayDropdownMenuItem']

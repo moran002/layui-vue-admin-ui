@@ -64,7 +64,7 @@ const schema = reactive({
     type: 'input',
     props: {
       type: 'text',
-      placeholder: '请输入菜单标识',
+      placeholder: '请输入菜单标识, 例:SystemDict',
     }
   },
   title: {
@@ -72,7 +72,7 @@ const schema = reactive({
     type: 'input',
     props: {
       type: 'text',
-      placeholder: '请输入菜单名称',
+      placeholder: '请输入菜单名称, title',
     }
   },
   path: {
@@ -80,7 +80,7 @@ const schema = reactive({
     type: 'input',
     props: {
       type: 'text',
-      placeholder: '请输入路由路径',
+      placeholder: '请输入路由路径, 例:/system/user',
     }
   },
   component: {
@@ -88,7 +88,7 @@ const schema = reactive({
     type: 'input',
     props: {
       type: 'text',
-      placeholder: '请输入组件路径',
+      placeholder: '请输入组件路径, 例:/system/user/index.vue\n',
     }
   },
   api: {
