@@ -10,8 +10,8 @@
     "serve": "vite preview"
   },
   "dependencies": {
-    "@layui/json-schema-form": "^1.0.15",
-    "@layui/layui-vue": "2.22.1",
+    "@layui/json-schema-form": "1.0.16",
+    "@layui/layui-vue": "2.23.0",
     "axios": "^1.5.1",
     "echarts": "^5.4.3",
     "js-base64": "^3.7.2",
